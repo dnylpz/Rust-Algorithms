@@ -14,8 +14,6 @@ fn partition(sortable: &mut Vec<i32>, lo: usize, hi: usize) -> usize {
     let mut i = lo; 
     for j in lo..hi { 
         if sortable[j] <= pivot { 
-             
-
             let temp  = sortable[i]; 
             sortable[i] = sortable[j]; 
             sortable[j] = temp; 
