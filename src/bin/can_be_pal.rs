@@ -7,10 +7,13 @@ use std::collections::VecDeque;
 use itertools::Itertools;
 
 fn can_be_pal(word: String, mut rem:  i32) -> bool {
+    if rem as usize >= word.len() {
+        return false;
+    }
     print!("Another word! {word}\n");
     let mut word_fwd = VecDeque::from_iter(word.chars());
     let mut word_rev = VecDeque::from_iter(word.chars().rev());
-    while rem > 0  {
+    while {
         println!("FWD: {word_fwd:?}");
         println!("REV: {word_rev:?}");
         if word_fwd[0] == word_rev[0] {
@@ -28,9 +31,10 @@ fn can_be_pal(word: String, mut rem:  i32) -> bool {
             }
         }
         if  word_rev.iter().join("") == word_fwd.iter().join(""){
-            return true
+            return true;
         }
-    }
+        rem != 0 
+    } { }
     false
 }
 
@@ -40,5 +44,4 @@ fn main () {
     assert!(!can_be_pal(String::from("waterrfetawx"), 1)); //false
     assert!(!can_be_pal(String::from("definitelynotapal"), 2));//false
     assert!(!can_be_pal(String::from("definitelynotapal"), 15)); // false
-    // Im aware it breaks if K >= String.len() 
 }
